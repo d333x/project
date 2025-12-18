@@ -1,0 +1,53 @@
+/* optimization.css */
+/* Анимации с аппаратным ускорением */
+.optimized-float {
+    animation: optimized-float 8s cubic-bezier(0.37, 0, 0.63, 1) infinite;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+.no-scroll {
+    overflow: hidden !important;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes optimized-float {
+    0%, 100% { transform: translateY(0) rotate(0.5deg); }
+    50% { transform: translateY(-12px) rotate(-0.5deg); }
+}
+
+/* Оптимизированный glass-эффект */
+.optimized-glass {
+    background: rgba(15, 15, 26, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translate3d(0, 0, 0);
+}
+
+/* Оптимизированные scanlines (упрощенная версия) */
+.optimized-scanlines {
+    background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        rgba(0, 240, 255, 0.03) 96%,
+        transparent 97%
+    );
+    background-size: 100% 8px;
+    animation: optimized-scanline 5s linear infinite;
+}
+
+@keyframes optimized-scanline {
+    from { transform: translateY(-100vh); }
+    to { transform: translateY(100vh); }
+}
+
+/* Отключение анимаций для пользователей с prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .optimized-float, .optimized-scanlines {
+        animation: none !important;
+    }
+}
